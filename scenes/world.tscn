@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c27vy3g7p4fos"]
 
-[ext_resource type="PackedScene" uid="uid://d0optyrlc46de" path="res://scenes/player.tscn" id="1_mpt65"]
+[ext_resource type="PackedScene" uid="uid://cyl6lm74y8cft" path="res://scenes/player_mk_2.tscn" id="1_f44kj"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_y6kbm"]
 size = Vector2(1000, 100)
@@ -10,13 +10,8 @@ size = Vector2(1000, 100)
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_mpt65")]
-position = Vector2(581, 146)
-acceleration = 60.0
-speed = 800.0
-jump_force = 700.0
-gravity_value = 2000.0
-terminal_velocity = 2000
+[node name="PlayerMk2" parent="." instance=ExtResource("1_f44kj")]
+position = Vector2(569, 372)
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2(582, 564)
@@ -36,4 +31,14 @@ modulate = Color(0.51, 0.51, 0.51, 1)
 mesh = SubResource("QuadMesh_y6kbm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+shape = SubResource("RectangleShape2D_k8rn1")
+
+[node name="Ground3" type="StaticBody2D" parent="."]
+position = Vector2(1674, 319)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ground3"]
+modulate = Color(0.51, 0.51, 0.51, 1)
+mesh = SubResource("QuadMesh_y6kbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3"]
 shape = SubResource("RectangleShape2D_k8rn1")

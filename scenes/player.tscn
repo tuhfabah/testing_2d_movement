@@ -1,13 +1,58 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0optyrlc46de"]
+[gd_scene load_steps=10 format=3 uid="uid://d0optyrlc46de"]
 
 [ext_resource type="Texture2D" uid="uid://k3pa8xr304qi" path="res://icon.svg" id="1_jb12u"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_qgls2"]
+[ext_resource type="Texture2D" uid="uid://cxf7nit5hrnde" path="res://characters/player/2d_animation_frog_spritesheet.webp" id="2_ua5hl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldtxd"]
+atlas = ExtResource("2_ua5hl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f62w"]
+atlas = ExtResource("2_ua5hl")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6v3x"]
+atlas = ExtResource("2_ua5hl")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_supav"]
+atlas = ExtResource("2_ua5hl")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l5eak"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldtxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f62w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6v3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_supav")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jr58q"]
-size = Vector2(62, 126)
+size = Vector2(62, 102)
 
 [node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_qgls2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_l5eak")
+animation = &"jump"
+frame_progress = 0.896436
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -65)
@@ -15,8 +60,13 @@ scale = Vector2(0.5, 1)
 texture = ExtResource("1_jb12u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -64)
+position = Vector2(0, -52)
 shape = SubResource("RectangleShape2D_jr58q")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -150)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_horizontal_offset = -0.22
+drag_top_margin = 0.5
+drag_bottom_margin = 0.31

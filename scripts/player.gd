@@ -14,7 +14,6 @@ var input_vector: Vector2 = Vector2.ZERO
 func _physics_process(delta: float) -> void:
 	
 	input_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	print(input_vector)
 	
 	# Add the gravity.
 	if not is_on_floor():
